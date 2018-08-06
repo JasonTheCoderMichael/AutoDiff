@@ -1,0 +1,5 @@
+file-report layout:side-by-side &
+options:display-all,line-numbers,ignore-unimportant &
+output-to:%1 &
+output-options:wrap-word,html-color &
+%2 %3

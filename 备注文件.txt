@@ -1,0 +1,66 @@
+文件对比用 file-report
+文件夹对比用 folder-report
+
+参数名和参数值用冒号(:)分隔开
+例如:
+layout:side-by-side
+
+多个参数值之间用逗号(,)分隔开,并且各个参数值之间不能有空格
+例如:
+options:display-all,line-numbers,ignore-unimportant     // 正确
+options:display-all, line-numbers, ignore-unimportant     // 错误
+
+参数和参数之间可以使用位与符号(&)进行连接,并写到新的一行中
+例如:
+file-report layout:side-by-side &
+options:display-all,line-numbers,ignore-unimportant &
+
+可以使用外部调用时传入的参数
+例如:
+%1 %2 %3 分别代表 第一 第二 第三个参数，以此类推 %n 代表第n个参数,这一点和Linux或者Windows命令行调用时传参数的使用是一致的
+
+
+完整示例:
+file-report layout:side-by-side &
+options:display-all,line-numbers,ignore-unimportant &
+output-to:%1 &
+output-options:wrap-word,html-color &
+%2 %3
+
+
+参数选项:
+layout:
+side-by-side interleaved summary
+
+options: 
+ignore-unimportant
+display-all display-mismatches display-matches display-context
+line-numbers (只有在side-by-side时才生效)
+
+output-options:
+print-color print-mono 
+print-portrait print-landscape
+wrap-none wrap-character wrap-word
+html-color html-mono html-custom 
+
+
+
+备注:
+1. 需要安装 好压 软件, 在对比完成后进行生成zip压缩包操作
+2. svn需要安装命令行工具
+3. 需要安装 BeyondCompare 软件
+需要安装 可以比对excel表中所有sheet页的格式插件 BCFormats.bcpkg(双击安装即可), 并在BeyondCompare中设置使用该格式对比excel文件
+此时File Formats 列表中有两个 MS Excel Workbooks, 描述分别是:
+
+- Compares the text contents of Microsoft Excel workbooks.
+- Requires:
+    Microsoft Excel 97 or newer (2007 for XLSM, XLSX)
+    Windows Scripting Host.(对比所有sheet页)
+
+和
+- Compares the text contents of Microsoft Excel workbooks.
+- Only converts first sheet.(之对比第一个sheet页)
+
+
+Tools -> FileFormats 选择 第一个描述的MS Excel Workbooks
+
